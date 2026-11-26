@@ -1,0 +1,369 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="color-scheme" content="dark" />
+    <meta name="description" content="leion (leionze) — solo builder from Kubu Raya, Indonesia. AI agents, web apps, games, and bounty builds." />
+    <link rel="icon" href="data:," />
+    <title>leion — leionze</title>
+    <style>
+      :root {
+        --bg: #0c0e10;
+        --panel: #14171a;
+        --panel-edge: #23282d;
+        --ink: #ece9e2;
+        --muted: #a7adb3;
+        --faint: #6f767d;
+        --accent: #ff7a1a;
+        --accent-ink: #1a0e02;
+        --accent-soft: rgba(255, 122, 26, 0.12);
+        --radius: 14px;
+      }
+      * { box-sizing: border-box; }
+      html { -webkit-text-size-adjust: 100%; }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: "Avenir Next", "Segoe UI", system-ui, -apple-system, sans-serif;
+        line-height: 1.55;
+      }
+      .mono {
+        font-family: ui-monospace, "SF Mono", "Cascadia Mono", Menlo, Consolas, monospace;
+      }
+      .wrap {
+        max-width: 860px;
+        margin: 0 auto;
+        padding: 56px 22px 64px;
+      }
+
+      /* ---------- Intro ---------- */
+      .handle {
+        color: var(--accent);
+        font-size: 0.85rem;
+        letter-spacing: 0.04em;
+        margin: 0 0 10px;
+      }
+      h1 {
+        font-size: clamp(2.6rem, 9vw, 4rem);
+        line-height: 1.02;
+        letter-spacing: -0.02em;
+        margin: 0 0 14px;
+        font-weight: 700;
+      }
+      .location {
+        color: var(--muted);
+        font-size: 0.95rem;
+        margin: 0 0 22px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .location svg { flex: none; }
+      .intro {
+        font-size: clamp(1.08rem, 3.4vw, 1.3rem);
+        line-height: 1.5;
+        color: var(--ink);
+        max-width: 34em;
+        margin: 0 0 28px;
+      }
+      .now {
+        border: 1px solid var(--panel-edge);
+        border-left: 3px solid var(--accent);
+        background: var(--panel);
+        border-radius: 0 var(--radius) var(--radius) 0;
+        padding: 16px 18px;
+        margin: 0 0 30px;
+        max-width: 620px;
+      }
+      .now .label {
+        display: block;
+        font-size: 0.72rem;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--accent);
+        margin-bottom: 5px;
+      }
+      .now p { margin: 0; color: var(--ink); font-size: 0.98rem; }
+      .now p span { color: var(--muted); }
+
+      .socials {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin: 0 0 8px;
+      }
+      .socials a {
+        display: inline-flex;
+        align-items: center;
+        gap: 9px;
+        min-height: 44px;
+        padding: 10px 18px;
+        border-radius: 999px;
+        border: 1px solid var(--panel-edge);
+        background: var(--panel);
+        color: var(--ink);
+        text-decoration: none;
+        font-size: 0.95rem;
+        font-weight: 600;
+      }
+      .socials a:hover, .socials a:focus-visible {
+        border-color: var(--accent);
+        color: var(--accent);
+      }
+      .socials a svg { flex: none; }
+
+      /* ---------- Sections ---------- */
+      section { margin-top: 56px; }
+      h2 {
+        font-size: 0.78rem;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--faint);
+        font-weight: 600;
+        margin: 0 0 18px;
+        display: flex;
+        align-items: center;
+        gap: 14px;
+      }
+      h2::after {
+        content: "";
+        flex: 1;
+        height: 1px;
+        background: var(--panel-edge);
+      }
+
+      /* ---------- Projects ---------- */
+      .projects {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+      }
+      .card {
+        background: var(--panel);
+        border: 1px solid var(--panel-edge);
+        border-radius: var(--radius);
+        padding: 22px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+      .card.wide { grid-column: 1 / -1; }
+      .card h3 {
+        margin: 0;
+        font-size: 1.18rem;
+        letter-spacing: -0.01em;
+        line-height: 1.25;
+      }
+      .card h3 .alias { color: var(--muted); font-weight: 500; font-size: 0.95rem; }
+      .card p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 0.95rem;
+        flex: 1;
+      }
+      .meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px 14px;
+        font-size: 0.8rem;
+        color: var(--faint);
+      }
+      .meta .pool { color: var(--accent); font-weight: 600; }
+      .card .links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 4px;
+      }
+      .card .links a {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        min-height: 38px;
+        padding: 7px 14px;
+        border-radius: 8px;
+        background: var(--accent-soft);
+        color: var(--accent);
+        text-decoration: none;
+        font-size: 0.88rem;
+        font-weight: 600;
+      }
+      .card .links a:hover, .card .links a:focus-visible {
+        background: var(--accent);
+        color: var(--accent-ink);
+      }
+
+      /* ---------- Skills ---------- */
+      .skills {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+      .skills li {
+        border: 1px solid var(--panel-edge);
+        background: var(--panel);
+        border-radius: 999px;
+        padding: 8px 15px;
+        font-size: 0.9rem;
+        color: var(--ink);
+      }
+
+      footer {
+        margin-top: 64px;
+        padding-top: 22px;
+        border-top: 1px solid var(--panel-edge);
+        color: var(--faint);
+        font-size: 0.85rem;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px 18px;
+        justify-content: space-between;
+      }
+      footer a { color: var(--muted); text-decoration: none; }
+      footer a:hover { color: var(--accent); }
+
+      a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+      @media (max-width: 620px) {
+        .wrap { padding: 40px 18px 52px; }
+        .projects { grid-template-columns: 1fr; }
+        section { margin-top: 44px; }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="wrap">
+
+      <!-- Intro -->
+      <p class="handle mono">@leionze</p>
+      <h1>leion</h1>
+      <p class="location">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+        Kubu Raya, Indonesia
+      </p>
+      <p class="intro">Solo builder from Indonesia. I build AI agents and web apps, and compete in bounties and hackathons.</p>
+
+      <div class="now">
+        <span class="label mono">Currently building</span>
+        <p>An autonomous evidence-mining agent for the Delphi Agent Arena <span>(Gensyn, on DoraHacks)</span>.</p>
+      </div>
+
+      <nav class="socials" aria-label="Profiles">
+        <a href="https://github.com/jmrsan" target="_blank" rel="noopener">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+          GitHub
+        </a>
+        <a href="https://x.com/Leionzevip" target="_blank" rel="noopener">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.9 1.15h3.68l-8.04 9.19L24 22.85h-7.41l-5.8-7.58-6.64 7.58H.47l8.6-9.83L0 1.15h7.59l5.24 6.93 6.07-6.93Zm-1.29 19.5h2.04L6.49 3.24H4.3l13.31 17.41Z"/></svg>
+          X
+        </a>
+        <a href="https://superteam.fun/earn/t/Leionze" target="_blank" rel="noopener">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10Z"/></svg>
+          Superteam
+        </a>
+      </nav>
+
+      <!-- Projects -->
+      <section aria-labelledby="projects-heading">
+        <h2 id="projects-heading">Projects &amp; bounty builds</h2>
+        <div class="projects">
+
+          <article class="card wide">
+            <h3>Token Radar <span class="alias">— “Ample Mirror”</span></h3>
+            <p>A 226-row token launch radar dashboard.</p>
+            <div class="meta mono">
+              <span>make.fun bounty</span>
+              <span class="pool">$1,325 prize pool</span>
+            </div>
+            <div class="links">
+              <a href="https://jmrsan.github.io/token-radar/preview.html" target="_blank" rel="noopener">Live demo</a>
+              <a href="https://github.com/jmrsan/token-radar" target="_blank" rel="noopener">Repo</a>
+            </div>
+          </article>
+
+          <article class="card">
+            <h3>Meridian Run</h3>
+            <p>A pseudo-3D chase-view flight game in vanilla JS canvas, with 3 missions, HUD, fuel and damage.</p>
+            <div class="meta mono">
+              <span>make.fun bounty</span>
+              <span class="pool">$500 prize pool</span>
+            </div>
+            <div class="links">
+              <a href="https://make.fun/bounty/best-flight-game-20261126-0057" target="_blank" rel="noopener">Bounty page</a>
+            </div>
+          </article>
+
+          <article class="card">
+            <h3>Dapur Kilat</h3>
+            <p>A cooking game entry.</p>
+            <div class="meta mono">
+              <span>make.fun bounty</span>
+              <span class="pool">$250 prize pool</span>
+            </div>
+            <div class="links">
+              <a href="https://make.fun/bounty/best-cooking-game-20261125-0137" target="_blank" rel="noopener">Bounty page</a>
+            </div>
+          </article>
+
+          <article class="card">
+            <h3>World News in One Image</h3>
+            <p>News-image entries for 25 and 26 November 2026, drawn with pure Python stdlib.</p>
+            <div class="meta mono">
+              <span>make.fun bounties</span>
+              <span class="pool">$100 prize pools</span>
+            </div>
+            <div class="links">
+              <a href="https://make.fun/bounty/news-image-20261125" target="_blank" rel="noopener">25 Nov bounty</a>
+              <a href="https://make.fun/bounty/news-image-20261126" target="_blank" rel="noopener">26 Nov bounty</a>
+            </div>
+          </article>
+
+          <article class="card">
+            <h3>TokenPocket Thread</h3>
+            <p>A 7-post X thread about TokenPocket transfer features.</p>
+            <div class="meta mono">
+              <span>Superteam Earn bounty</span>
+              <span class="pool">$500 USDC</span>
+            </div>
+            <div class="links">
+              <a href="https://x.com/Leionzevip/status/2125635847244697879" target="_blank" rel="noopener">Read the thread</a>
+            </div>
+          </article>
+
+        </div>
+      </section>
+
+      <!-- Skills -->
+      <section aria-labelledby="skills-heading">
+        <h2 id="skills-heading">Skills</h2>
+        <ul class="skills">
+          <li>JavaScript</li>
+          <li>Python</li>
+          <li>Node.js</li>
+          <li>HTML</li>
+          <li>CSS</li>
+          <li>Git</li>
+          <li>AI Agents</li>
+          <li>Web Apps</li>
+          <li>UI/UX</li>
+          <li>Game Development</li>
+        </ul>
+      </section>
+
+      <footer>
+        <span>leion · @leionze · Kubu Raya, Indonesia</span>
+        <span>
+          <a href="https://github.com/jmrsan" target="_blank" rel="noopener">GitHub</a> ·
+          <a href="https://x.com/Leionzevip" target="_blank" rel="noopener">X</a> ·
+          <a href="https://superteam.fun/earn/t/Leionze" target="_blank" rel="noopener">Superteam</a>
+        </span>
+      </footer>
+
+    </main>
+  </body>
+</html>
